@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react'
-import Contador from './Contador'
 import '../css/estilo.css'
 
 const Tarefa = () => {
@@ -45,22 +44,22 @@ const Tarefa = () => {
 
 
   return (
-    <div className="todo-container">
-      <h1>Minha Lista de Tarefas</h1>
-      <form onSubmit={AdicionarTarefa}>
+    <div className="max-w-md mx-auto mt-10 bg-red-800 rounded-2xl shadow-lg shadow-amber-200 border boder-red-500">
+      <h1 className="text-2xl font-bold text-white mb-6 text-center">Minha Lista de Tarefas</h1>
+      <form onSubmit={AdicionarTarefa} className="flex gap-2 mb-6">
         <input
           type="text"
           value={campo}
           onChange={(e)=>setCampo(e.target.value)}
           placeholder='Digite sua Tarefa'
-          className="todo-input"
+          className="felx-1 px-4 py-2 border border-black rounded-2xl focus:outline-none focus:ring-1 focus:ring-pink-950 focus:border-transparent text-black placeholder:text-gray-700"
         />
-        <button type="submit">Adicionar</button>
+        <button type="submit" className="bg-red-950 hover: border-red-950 text-red-300 font-medium px-5 py-2 rounded-2xl transition-colors cursor-pointer">Adicionar</button>
       </form>
 
-      <ul>
+      <ul className='space-y-3'>
         {tarefas.map((tarefa)=>(
-          <li key={tarefa.id}>
+          <li key={tarefa.id} className='flex items-center justify-between p-3 bg-red-900 border border-red-500 rounded-2xl shadow-sm hover:bg-red-400'>
             <span>{tarefa.texto}</span>
             <button onClick={()=>RemoverTarefa(tarefa.id)}>Excluir</button>
           </li>
@@ -68,7 +67,6 @@ const Tarefa = () => {
       </ul>
       {/* COMPARA SE NÃO TIVER TAREFAS DEIXA A MENSAGEM NENHUMA TAREFA SALVA */}
       {tarefas.length === 0 && <p>Nenhuma Tarefa Salva</p>}
-      <Contador/>
       
     </div>
   )
